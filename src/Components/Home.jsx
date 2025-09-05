@@ -352,7 +352,8 @@ const Home = () => {
         className="sparkle"
         style={{ display: isBirthday ? "inline-block" : "none" }}
       >
-                🎂 Happy Birthday Swetha! 🎂      {" "}
+        {/*         🎂 Happy Birthday Swetha! 🎂      {" "} */}
+        puttina roju jaijai luu chitti papaiii
       </div>
            {" "}
       <div id="balloons" style={{ display: isBirthday ? "block" : "none" }}>
