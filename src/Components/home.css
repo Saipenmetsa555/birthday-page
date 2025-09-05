@@ -1,0 +1,463 @@
+/* .birthday-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden; 
+  position: relative;
+}
+
+.content {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+  z-index: 10; 
+}
+
+h1 {
+  color: #ff69b4;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #555;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.image-carousel {
+  margin-top: 20px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.slick-dots li button:before {
+  font-size: 10px;
+  color: #ff69b4;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #ff69b4;
+} */
+
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap");
+
+/* Color variables and basic body styles */
+:root {
+  /* Pastels + rose gold */
+  --pink: #fadadd;
+  --baby-pink: #f4c2c1;
+  --peach: #ffdab8;
+  --rose-gold: #b76e79;
+  --lavender: #e6d9ff;
+  --white: #ffffff;
+
+  /* Vibrant accents (no green/yellow) */
+  --vib-pink: #ff6fa7;
+  --vib-coral: #ff6b6b;
+  --vib-lavender: #c8b6ff;
+  --vib-peach: #ffb199;
+
+  --bg1: var(--peach);
+  --bg2: var(--pink);
+  --bg3: var(--lavender);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--white);
+  text-align: center;
+  font-family: "Poppins", Arial, sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+  background-size: 180% 180%;
+  animation: gradientShift 18s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Star sparkle overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      2px 2px at 20% 30%,
+      rgba(255, 255, 255, 0.8),
+      transparent 50%
+    ),
+    radial-gradient(
+      2px 2px at 80% 20%,
+      rgba(255, 255, 255, 0.7),
+      transparent 50%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 60% 70%,
+      rgba(255, 255, 255, 0.6),
+      transparent 50%
+    ),
+    radial-gradient(
+      1.5px 1.5px at 30% 80%,
+      rgba(255, 255, 255, 0.6),
+      transparent 50%
+    );
+  animation: twinkle 6s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Top bunting banner (SVG) */
+.bunting-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bunting svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.flag {
+  transform-origin: center;
+  animation: bob 4.2s ease-in-out infinite;
+}
+.flag:nth-child(odd) {
+  animation-delay: 1.2s;
+}
+.flag:nth-child(3n) {
+  animation-delay: 2.1s;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+h1 {
+  margin: 94px 16px 2px;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-shadow: 0 2px 10px rgba(183, 110, 121, 0.4),
+    0 0 22px rgba(255, 255, 255, 0.25);
+}
+
+/* Name line under title with gradient clip */
+.name-line {
+  margin: 2px 16px 8px;
+  font-family: "Great Vibes", cursive;
+  /* font-size: clamp(36px, 5vw, 64px); */
+  font-size: clamp(126px, 5vw, 100px);
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--rose-gold), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 14px rgba(183, 110, 121, 0.55);
+  letter-spacing: 0.5px;
+  color: red;
+  /* color: #ff6f17; */
+  padding-top: 50px;
+  /* color: #d4af37; */
+}
+
+/* Glassy info box with NON-rotating animated shine */
+.panel {
+  position: relative;
+  display: inline-block;
+  margin-top: 14px;
+  padding: 16px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(183, 110, 121, 0.25);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  background: linear-gradient(
+    90deg,
+    var(--vib-pink),
+    var(--vib-lavender),
+    var(--vib-peach),
+    var(--vib-coral)
+  );
+  background-size: 200% 100%;
+  filter: blur(0.8px);
+  z-index: -1;
+  animation: borderSweep 8s ease-in-out infinite;
+}
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.8;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.8;
+  }
+}
+
+/* Countdown: vibrant gradient (no green/yellow) */
+#countdown {
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--vib-pink),
+    var(--vib-lavender),
+    var(--vib-peach),
+    var(--vib-coral)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 0 transparent;
+  background-size: 200% 100%;
+  animation: countdownSweep 8s ease-in-out infinite;
+}
+@keyframes countdownSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#message {
+  display: none;
+  margin-top: 26px;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    var(--rose-gold),
+    var(--pink),
+    var(--peach)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 28px rgba(183, 110, 121, 0.55);
+  letter-spacing: 0.6px;
+}
+
+/* Animated balloons row */
+#balloons {
+  display: none;
+  margin-top: 16px;
+  font-size: clamp(22px, 3vw, 32px);
+  animation: floatUp 6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 6px 10px rgba(183, 110, 121, 0.45));
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
+}
+
+/* Extra floating decor (hearts, sparkles) — translate-only (no rotation) */
+.floaters {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.floater {
+  position: absolute;
+  bottom: -10vh;
+  font-size: clamp(18px, 2.5vw, 28px);
+  animation: driftUp var(--dur, 12s) ease-in infinite;
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 10px rgba(183, 110, 121, 0.35));
+}
+@keyframes driftUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(var(--x, 40px));
+    opacity: 0;
+  }
+}
+
+/* Edge ribbons (left/right shimmer) */
+.edge-ribbon {
+  position: fixed;
+  top: 0;
+  width: 12px;
+  height: 100vh;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15) 10px,
+      rgba(255, 255, 255, 0) 10px,
+      rgba(255, 255, 255, 0) 20px
+    ),
+    linear-gradient(180deg, var(--vib-pink), var(--vib-peach), var(--vib-coral));
+  background-size: 100% 100%, 100% 200%;
+  animation: ribbonShimmer 10s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(183, 110, 121, 0.45));
+  z-index: 1;
+}
+.edge-left {
+  left: 0;
+}
+.edge-right {
+  right: 0;
+}
+@keyframes ribbonShimmer {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  50% {
+    background-position: 0 0, 0 100%;
+  }
+  100% {
+    background-position: 0 0, 0 0;
+  }
+}
+
+/* Canvas layers */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+}
+#confetti {
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Footer note — larger emphasis */
+.note {
+  margin: 24px 0 18px;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 600;
+  opacity: 0.95;
+  text-shadow: 0 2px 10px rgba(183, 110, 121, 0.35);
+}
+
+/* Click burst emojis */
+.burst {
+  position: fixed;
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+  z-index: 3;
+  font-size: 20px;
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(0);
+  animation: burstUp 900ms ease-out forwards;
+  filter: drop-shadow(0 6px 10px rgba(183, 110, 121, 0.45));
+}
+@keyframes burstUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(10px) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-60px) scale(1.15);
+  }
+}
+
+.celebrate-btn {
+  margin-top: 30px;
+  width: 200px;
+  height: 50px;
+  border-width: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  background: linear-gradient(
+    90deg,
+    var(--vib-pink),
+    var(--vib-lavender),
+    var(--vib-peach),
+    var(--vib-coral)
+  );
+}
+
+@media screen and (max-width: 400px) {
+  .birthday {
+    font-size: 30px;
+    /* border: 2px solid green; */
+  }
+  .name-line {
+    font-size: 70px;
+  }
+}
